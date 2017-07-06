@@ -1,0 +1,32 @@
+{
+  "name": "n-topic-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@financial-times/n-gage": "^1.8.18",
+    "@financial-times/n-internal-tool": "^2.0.0",
+    "bower": "^1.8.0",
+    "bower-resolve-webpack-plugin": "^1.0.3",
+    "chalk": "^2.0.1",
+    "node-sass": "^4.5.3",
+    "webpack": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "node_modules/.bin/secret-squirrel",
+    "prepush": "make verify -j3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Financial-Times/n-topic-search.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Financial-Times/n-topic-search/issues"
+  },
+  "homepage": "https://github.com/Financial-Times/n-topic-search#readme"
+}

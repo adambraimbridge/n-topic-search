@@ -1,6 +1,12 @@
 const Delegate = require('ftdomdelegate');
 import { debounce } from 'n-ui-foundations';
-import { SuggestionList } from './suggestion-list';
+import suggestionList from './renderers/search-suggestions';
+
+const KEYS = {
+	ENTER: 13,
+	UP_ARROW: 38,
+	DOWN_ARROW: 40
+}
 
 function getNonMatcher (container) {
 	if (typeof container === 'string') {
@@ -27,7 +33,7 @@ function isOutside (el, container) {
 class Typeahead {
 	constructor (containerEl, listComponent) {
 		this.container = containerEl;
-		this.listComponent = listComponent || SuggestionList;
+		this.listComponent = listComponent || suggestionList;
 		this.searchEl = this.container.querySelector('[data-typeahead-input]');
 		this.dataSrc = `//${window.location.host}/search-api/suggestions?partial=`;
 		this.categories = (this.container.getAttribute('data-typeahead-categories') || 'tags').split(',');
@@ -77,6 +83,21 @@ class Typeahead {
 			}
 		});
 
+		this.suggestionListContainer.addEventListener('keyup', ev => {
+			switch(ev.which) {
+				case 13 : return; // enter
+				case 9 : return; // tab
+				case 40 :
+					this.onDownArrow(ev);
+				break;
+				case 38 :
+					this.onUpArrow(ev);
+				break;
+				default :
+				break;
+			}
+		})
+
 		this.searchEl.addEventListener('focus', this.onFocus);
 		this.searchEl.addEventListener('click', this.onFocus);
 	}
@@ -96,12 +117,40 @@ class Typeahead {
 		this.show();
 	}
 
-	onDownArrow () {
+	onDownArrow (ev) {
+		console.log(ev)
 		this.suggestionLinks = Array.from(this.suggestionListContainer.querySelectorAll('.n-typeahead__link'));
 		if (this.suggestionLinks.length) {
 			this.suggestionLinks[0].focus();
 		}
 	}
+
+	onUpArrow () {
+			// 		if (ev.which === KEYS.DOWN_ARROW) {
+			// 	const index = this.items.indexOf(ev.target);
+			// 	const newIndex = index + 1;
+			// 	if (newIndex < this.items.length) {
+			// 		this.items[newIndex].focus();
+			// 	} else {
+			// 		this.items[0].focus();
+			// 	}
+			// 	ev.preventDefault(); //disable page scrolling
+			// 	return;
+			// }
+
+			// if (ev.which === KEYS.UP_ARROW) {
+			// 	const index = this.items.indexOf(ev.target);
+			// 	const newIndex = index - 1;
+			// 	if (newIndex < 0) {
+			// 		this.options.searchEl.focus();
+			// 	} else {
+			// 		this.items[newIndex].focus();
+			// 	}
+			// 	ev.preventDefault(); //disable page scrolling
+			// }
+	}
+
+
 
 	// INTERNALS
 	getSuggestions (value) {

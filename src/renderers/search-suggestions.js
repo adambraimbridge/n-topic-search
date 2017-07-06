@@ -1,5 +1,5 @@
 const morphdom = require('morphdom');
-const delegate = require('dom-delegate');
+const delegate = require('ftdomdelegate');
 const DISPLAY_ITEMS = 5;
 
 function regExpEscape (s) {
@@ -7,7 +7,7 @@ function regExpEscape (s) {
 }
 
 const headingMapping = {
-	tags: 'News',
+	concepts: 'News',
 	equities: 'Securities'
 }
 
@@ -18,7 +18,7 @@ const KEYS = {
 }
 
 
-export function (container, options) {
+export default function (container, options) {
 	return new SuggestionList(container, options)
 }
 
@@ -33,6 +33,7 @@ class SuggestionList {
 				return containers
 			}, {})
 		}
+		this.renderSuggestionGroup = this.renderSuggestionGroup.bind(this);
 		this.createHtml();
 		this.render();
 	}
@@ -52,24 +53,22 @@ class SuggestionList {
 			const linkAttrs = `
 				class="n-typeahead__link n-typeahead__link--tail"
 				href="${group.tailLink.url}"
-				data-trackable="${group.tailLink.trackable}""
+				data-trackable="${group.tailLink.trackable}"
 			`
-			// eslint-disable-next-line react/no-unknown-property
-			return `<a ${linkAttrs} ref={(c) => { this.items.push(c) }} tabindex="0">${group.tailLink.innerHtml}</a>`
+			return `<a ${linkAttrs} tabindex="0">${group.tailLink.innerHtml}</a>`
 		}
 	}
 
-	renderSuggestionLink (suggestion) {
+	renderSuggestionLink (suggestion, group) {
 		return `<li class="n-typeahead__item">
 			<a class="n-typeahead__link ${group.linkClassName}"
-				ref={(c) => { this.items.push(c) }}
-				href="${suggestion.url}
+				href="${suggestion.url}"
 				tabindex="0"
 				data-trackable="link"
 				data-suggestion-id="${suggestion.id}"
 				data-suggestion-type="${suggestion.type}"
 			>${suggestion.html}</a>
-		</li>`
+		</li>`;
 	}
 
 	handleKeyDown (ev) {
@@ -95,7 +94,7 @@ class SuggestionList {
 			const index = this.items.indexOf(ev.target);
 			const newIndex = index - 1;
 			if (newIndex < 0) {
-				this.props.searchEl.focus();
+				this.options.searchEl.focus();
 			} else {
 				this.items[newIndex].focus();
 			}
@@ -106,12 +105,12 @@ class SuggestionList {
 	renderSuggestionGroup (group) {
 		let html = `<div class="n-typeahead__group ${group.className}" data-trackable="${group.trackable}">`
 
-		html += this.props.categories.length > 1 ? `<div className="n-typeahead__heading">${group.heading}</div>` : '';
+		html += this.options.categories.length > 1 ? `<div class="n-typeahead__heading">${group.heading}</div>` : '';
 
 		if (group.suggestions.length || group.emptyHtml) {
 			html += `<ul class="n-typeahead__item-list">
-				${group.suggestions.map(this.renderSuggestionLink).join('')}
-				<li className="n-typeahead__item">
+				${group.suggestions.map(suggestion => this.renderSuggestionLink(suggestion, group)).join('')}
+				<li class="n-typeahead__item">
 					${this.renderTailLink(group)}
 				</li>
 			</ul>`
@@ -121,24 +120,25 @@ class SuggestionList {
 	}
 
 	createHtml () {
-		const hasTags = this.state.suggestions.tags && this.state.suggestions.tags.length;
+
+		const hasConcepts = this.state.suggestions.concepts && this.state.suggestions.concepts.length;
 		const hasEquities = this.state.suggestions.equities && this.state.suggestions.equities.length;
-		const hasSuggestions = hasTags || hasEquities;
+		const hasSuggestions = hasConcepts || hasEquities;
 		const suggestions = [];
 		this.items = [];
-		if (this.props.categories.includes('tags')) {
+		if (this.options.categories.includes('concepts')) {
 			suggestions.push({
-				heading: headingMapping['tags'],
+				heading: headingMapping['concepts'],
 				linkClassName: 'n-typeahead__link--news',
 				trackable: 'news',
-				suggestions: this.state.suggestions.tags.slice(0, DISPLAY_ITEMS)
+				suggestions: this.state.suggestions.concepts.slice(0, DISPLAY_ITEMS)
 					.map(suggestion => ({
-						html: this.highlight(suggestion.name),
+						html: this.highlight(suggestion.prefLabel),
 						url: suggestion.url,
 						id: suggestion.id,
 						type: 'tag'
 					})),
-				tailLink: this.props.includeViewAllLink && {
+				tailLink: this.options.includeViewAllLink && {
 					url: `/search?q=${this.state.searchTerm}`,
 					innerHtml: `<span>See all news matching <mark>${this.state.searchTerm}</mark></span>`,
 					trackable: 'see-all'
@@ -147,7 +147,7 @@ class SuggestionList {
 
 		}
 
-		if (this.props.categories.includes('equities')) {
+		if (this.options.categories.includes('equities')) {
 			suggestions.push({
 				heading: headingMapping['equities'],
 				trackable: 'equities',
@@ -160,7 +160,7 @@ class SuggestionList {
 						id: suggestion.symbol,
 						type: 'equity'
 					})),
-				tailLink: this.props.includeViewAllLink && {
+				tailLink: this.options.includeViewAllLink && {
 					url: `https://markets.ft.com/data/search?query=${this.state.searchTerm}`,
 					innerHtml: `<span>See all quotes matching <mark>${this.state.searchTerm}</mark></span>`,
 					trackable: 'see-all'
@@ -169,18 +169,20 @@ class SuggestionList {
 		}
 		this.newHtml = `<div
 				class="n-typeahead"
-				${ hasSuggestions ? '' : hidden}
+				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
-				onKeyDown={this.handleKeyDown.bind(this)}>
 				${ suggestions.map(this.renderSuggestionGroup) }
 			</div>`
 	}
 
 	render () {
-		if (container.innerHTML.trim()) {
-			morphdom(container, document.createDocumentFragment().insertAdjacentHTML('beforeend', this.newHtml).firstChild)
+		if (this.container.innerHTML.trim()) {
+			const frag = document.createDocumentFragment();
+			frag.appendChild(document.createElement('div'));
+			frag.firstChild.insertAdjacentHTML('beforeend', this.newHtml)
+			morphdom(this.container, frag.firstChild.firstChild)
 		} else {
-			container.innerHTML = this.newHtml;
+			this.container.innerHTML = this.newHtml;
 		}
 		this.newHtml = '';
 	}

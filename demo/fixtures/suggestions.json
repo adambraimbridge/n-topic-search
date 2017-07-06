@@ -1,0 +1,439 @@
+{
+  "query": {
+    "partial": "apple"
+  },
+  "partial": [
+    "apple"
+  ],
+  "tags": [
+    {
+      "count": 76,
+      "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+      "name": "Apple",
+      "taxonomy": "organisations",
+      "url": "https://www.ft.com/stream/organisationsId/TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+      "formattedName": "apple"
+    }
+  ],
+  "concepts": [
+    {
+      "count": 8656,
+      "id": "2384fa7a-d514-3d6a-a0ea-3a711f66d0d8",
+      "prefLabel": "Apple Inc",
+      "directType": "http://www.ft.com/ontology/company/PublicCompany",
+      "url": "https://www.ft.com/stream/2384fa7a-d514-3d6a-a0ea-3a711f66d0d8",
+      "formattedName": "apple inc"
+    },
+    {
+      "count": 46,
+      "id": "5ec173fe-3985-314c-b869-aefefe7b231e",
+      "prefLabel": "Big Apple Companies",
+      "directType": "http://www.ft.com/ontology/organisation/Organisation",
+      "url": "https://www.ft.com/stream/5ec173fe-3985-314c-b869-aefefe7b231e",
+      "formattedName": "big apple companies"
+    },
+    {
+      "count": 16,
+      "id": "cc535fdb-1acc-3e4c-8bd8-7868c0ab30b3",
+      "prefLabel": "Apple Corps Limited",
+      "directType": "http://www.ft.com/ontology/organisation/Organisation",
+      "url": "https://www.ft.com/stream/cc535fdb-1acc-3e4c-8bd8-7868c0ab30b3",
+      "formattedName": "apple corps limited"
+    },
+    {
+      "count": 8,
+      "id": "4a80106a-297e-3541-b303-2f194e812e2b",
+      "prefLabel": "Anne Applebaum",
+      "directType": "http://www.ft.com/ontology/person/Person",
+      "url": "https://www.ft.com/stream/4a80106a-297e-3541-b303-2f194e812e2b",
+      "formattedName": "anne applebaum"
+    },
+    {
+      "count": 7,
+      "id": "7e6e3b70-2166-3a9c-8dc4-47d7ae9a1281",
+      "prefLabel": "Rutherford Appleton Laboratory",
+      "directType": "http://www.ft.com/ontology/organisation/Organisation",
+      "url": "https://www.ft.com/stream/7e6e3b70-2166-3a9c-8dc4-47d7ae9a1281",
+      "formattedName": "rutherford appleton laboratory"
+    },
+    {
+      "count": 6,
+      "id": "a8f93a32-6111-395f-8429-a6e318577d25",
+      "prefLabel": "John Appleby",
+      "directType": "http://www.ft.com/ontology/person/Person",
+      "url": "https://www.ft.com/stream/a8f93a32-6111-395f-8429-a6e318577d25",
+      "formattedName": "john appleby"
+    },
+    {
+      "count": 3,
+      "id": "060b9a55-e62e-3f7e-80bc-1c9af2ca7417",
+      "prefLabel": "Bryan Appleyard",
+      "directType": "http://www.ft.com/ontology/person/Person",
+      "url": "https://www.ft.com/stream/060b9a55-e62e-3f7e-80bc-1c9af2ca7417",
+      "formattedName": "bryan appleyard"
+    },
+    {
+      "count": 3,
+      "id": "09ef3f9c-558d-3fc6-a097-2f0303f7249c",
+      "prefLabel": "Fiona Apple",
+      "directType": "http://www.ft.com/ontology/person/Person",
+      "url": "https://www.ft.com/stream/09ef3f9c-558d-3fc6-a097-2f0303f7249c",
+      "formattedName": "fiona apple"
+    },
+    {
+      "count": 2,
+      "id": "419c5323-f8fc-3020-9d25-4ee2e9285f35",
+      "prefLabel": "Appleton, Wisconsin",
+      "directType": "http://www.ft.com/ontology/Location",
+      "url": "https://www.ft.com/stream/419c5323-f8fc-3020-9d25-4ee2e9285f35",
+      "formattedName": "appleton wisconsin"
+    },
+    {
+      "count": 2,
+      "id": "9599a5fc-737f-3833-8e4d-355cf8df5015",
+      "prefLabel": "Apple Media",
+      "directType": "http://www.ft.com/ontology/organisation/Organisation",
+      "url": "https://www.ft.com/stream/9599a5fc-737f-3833-8e4d-355cf8df5015",
+      "formattedName": "apple media"
+    }
+  ],
+  "facets": [],
+  "equities": [
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APGN%3ALSE",
+      "name": "Applegreen PLC",
+      "symbol": "APGN:LSE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APLE%3ANYQ",
+      "name": "Apple Hospitality REIT Inc",
+      "symbol": "APLE:NYQ",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ANSQ",
+      "name": "Apple Inc",
+      "symbol": "AAPL:NSQ",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=2788%3ATYO",
+      "name": "Apple International Co Ltd",
+      "symbol": "2788:TYO",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=GAPJ%3APNK",
+      "name": "Golden Apple Oil & Gas Inc",
+      "symbol": "GAPJ:PNK",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APRU%3APKN",
+      "name": "Apple Rush Company Inc",
+      "symbol": "APRU:PKN",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AGPL%3APKN",
+      "name": "Apple Green Holding Inc",
+      "symbol": "AGPL:PKN",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=603020%3ASHH",
+      "name": "Apple Flavor & Fragrance Group Co Ltd",
+      "symbol": "603020:SHH",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AKU.U%3AASQ",
+      "name": "Apple Creek Acquisition Corp",
+      "symbol": "AKU.U:ASQ",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=0R2V%3ALSE",
+      "name": "Apple Inc",
+      "symbol": "0R2V:LSE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3ABER",
+      "name": "Apple Inc",
+      "symbol": "APC:BER",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3ADUS",
+      "name": "Apple Inc",
+      "symbol": "APC:DUS",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ADEU",
+      "name": "Apple Inc",
+      "symbol": "AAPL:DEU",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3AFRA",
+      "name": "Apple Inc",
+      "symbol": "APC:FRA",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3AHAM",
+      "name": "Apple Inc",
+      "symbol": "APC:HAM",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3AMUN",
+      "name": "Apple Inc",
+      "symbol": "APC:MUN",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL*%3AMEX",
+      "name": "Apple Inc",
+      "symbol": "AAPL*:MEX",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3ASTU",
+      "name": "Apple Inc",
+      "symbol": "APC:STU",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APCX%3AGER",
+      "name": "Apple Inc",
+      "symbol": "APCX:GER",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL4%3ABUE",
+      "name": "Apple Inc",
+      "symbol": "AAPL4:BUE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPLC4%3ABUE",
+      "name": "Apple Inc",
+      "symbol": "AAPLC4:BUE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPLD4%3ABUE",
+      "name": "Apple Inc",
+      "symbol": "AAPLD4:BUE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL34%3ASAO",
+      "name": "Apple Inc",
+      "symbol": "AAPL34:SAO",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL11BF%3ASAO",
+      "name": "Apple Inc",
+      "symbol": "AAPL11BF:SAO",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ASGO",
+      "name": "Apple Inc",
+      "symbol": "AAPL:SGO",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=1AAPL34%3ASAO",
+      "name": "Apple Inc",
+      "symbol": "1AAPL34:SAO",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=1AAPL34F%3ASAO",
+      "name": "Apple Inc",
+      "symbol": "1AAPL34F:SAO",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ABRN",
+      "name": "Apple Inc",
+      "symbol": "AAPL:BRN",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APC%3AHAN",
+      "name": "Apple Inc",
+      "symbol": "APC:HAN",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ASWX",
+      "name": "Apple Inc",
+      "symbol": "AAPL:SWX",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=603020%3ASHH",
+      "name": "Apple Flavor & Fragrance Group Co Ltd",
+      "symbol": "603020:SHH",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APLE%3ANYS",
+      "name": "Apple Hospitality REIT Inc",
+      "symbol": "APLE:NYS",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ASWX",
+      "name": "Apple Inc",
+      "symbol": "AAPL:SWX",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APGN%3AISE",
+      "name": "Applegreen PLC",
+      "symbol": "APGN:ISE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APGN%3AFRA",
+      "name": "Applegreen PLC",
+      "symbol": "APGN:FRA",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APGNG%3ADEU",
+      "name": "Applegreen PLC",
+      "symbol": "APGNG:DEU",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APGN%3ASTU",
+      "name": "Applegreen PLC",
+      "symbol": "APGN:STU",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AKU.U%3AASE",
+      "name": "Apple Creek Acquisition Corp",
+      "symbol": "AKU.U:ASE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3ASWX",
+      "name": "Apple Inc",
+      "symbol": "AAPL:SWX",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=AAPL%3AVIE",
+      "name": "Apple Inc",
+      "symbol": "AAPL:VIE",
+      "oda": "Equities tearsheet",
+      "assetClass": "Equities"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APPLX",
+      "name": "Appleseed Fund Investor Share",
+      "symbol": "APPLX",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APPIX",
+      "name": "Appleseed Fund Institutional Share",
+      "symbol": "APPIX",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=IE00BX7RPZ45%3AILS",
+      "name": "Appletree Subordinatd Debt Fund B ILS",
+      "symbol": "IE00BX7RPZ45:ILS",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=IE00BWT69G18%3AUSD",
+      "name": "Appletree Subordinatd Debt Fund A USD Acc",
+      "symbol": "IE00BWT69G18:USD",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=IE00BWT69H25%3AEUR",
+      "name": "Appletree Subordinatd Debt Fund A EUR Acc",
+      "symbol": "IE00BWT69H25:EUR",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=IE00BWT69J49%3AUSD",
+      "name": "Appletree Subordinatd Debt Fund B USD Acc",
+      "symbol": "IE00BWT69J49:USD",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=IE00BX7RPY38%3AILS",
+      "name": "Appletree Subordinatd Debt Fund A ILS Acc",
+      "symbol": "IE00BX7RPY38:ILS",
+      "oda": "Funds tearsheet",
+      "assetClass": "Funds"
+    },
+    {
+      "url": "http://markets.ft.com/data/equities/tearsheet/summary?s=APQ%3APSE",
+      "name": "APPLE INC BYRDS OPTS APQ",
+      "symbol": "APQ:PSE",
+      "oda": "Indices tearsheet",
+      "assetClass": "Indices"
+    }
+  ]
+}
