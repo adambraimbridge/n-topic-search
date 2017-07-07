@@ -51,9 +51,9 @@ class SuggestionList {
 	renderTailLink (group) {
 		if (group.tailLink) {
 			const linkAttrs = `
-				class="n-typeahead__link n-typeahead__link--tail"
+				class="n-typeahead__target n-typeahead__target--tail"
 				href="${group.tailLink.url}"
-				data-trackable="${group.tailLink.trackable}"
+				data-trackable="${group.tailLink.trackable}""
 			`
 			return `<a ${linkAttrs} tabindex="0">${group.tailLink.innerHtml}</a>`
 		}
@@ -61,7 +61,7 @@ class SuggestionList {
 
 	renderSuggestionLink (suggestion, group) {
 		return `<li class="n-typeahead__item">
-			<a class="n-typeahead__link ${group.linkClassName}"
+			<a class="n-typeahead__target ${group.linkClassName}"
 				href="${suggestion.url}"
 				tabindex="0"
 				data-trackable="link"
@@ -69,37 +69,6 @@ class SuggestionList {
 				data-suggestion-type="${suggestion.type}"
 			>${suggestion.html}</a>
 		</li>`;
-	}
-
-	handleKeyDown (ev) {
-		if (ev.which === KEYS.ENTER) {
-			ev.stopPropagation();
-			// we don't prevent default as the link's url is a link to the search page
-			return;
-		}
-
-		if (ev.which === KEYS.DOWN_ARROW) {
-			const index = this.items.indexOf(ev.target);
-			const newIndex = index + 1;
-			if (newIndex < this.items.length) {
-				this.items[newIndex].focus();
-			} else {
-				this.items[0].focus();
-			}
-			ev.preventDefault(); //disable page scrolling
-			return;
-		}
-
-		if (ev.which === KEYS.UP_ARROW) {
-			const index = this.items.indexOf(ev.target);
-			const newIndex = index - 1;
-			if (newIndex < 0) {
-				this.options.searchEl.focus();
-			} else {
-				this.items[newIndex].focus();
-			}
-			ev.preventDefault(); //disable page scrolling
-		}
 	}
 
 	renderSuggestionGroup (group) {
@@ -129,7 +98,7 @@ class SuggestionList {
 		if (this.options.categories.includes('concepts')) {
 			suggestions.push({
 				heading: headingMapping['concepts'],
-				linkClassName: 'n-typeahead__link--news',
+				linkClassName: 'n-typeahead__target--news',
 				trackable: 'news',
 				suggestions: this.state.suggestions.concepts.slice(0, DISPLAY_ITEMS)
 					.map(suggestion => ({
@@ -151,11 +120,11 @@ class SuggestionList {
 			suggestions.push({
 				heading: headingMapping['equities'],
 				trackable: 'equities',
-				linkClassName: 'n-typeahead__link--equities',
+				linkClassName: 'n-typeahead__target--equities',
 				emptyHtml: `<div className="n-typeahead__no-results-message">No equities found</div>`,
 				suggestions: this.state.suggestions.equities.slice(0, DISPLAY_ITEMS)
 					.map(suggestion => ({
-						html: `<span class="n-typeahead__link__equity-name">${this.highlight(suggestion.name)}</span><abbr>${this.highlight(suggestion.symbol)}</abbr>`,
+						html: `<span class="n-typeahead__target__equity-name">${this.highlight(suggestion.name)}</span><abbr>${this.highlight(suggestion.symbol)}</abbr>`,
 						url: suggestion.url,
 						id: suggestion.symbol,
 						type: 'equity'
@@ -171,6 +140,7 @@ class SuggestionList {
 				class="n-typeahead"
 				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
+			>
 				${ suggestions.map(this.renderSuggestionGroup) }
 			</div>`
 	}
@@ -185,6 +155,12 @@ class SuggestionList {
 			this.container.innerHTML = this.newHtml;
 		}
 		this.newHtml = '';
+	}
+
+	handleSelection (el, ev) {
+		ev.stopPropagation();
+		// we don't prevent default as the link's url is a link to the relevant stream page
+		return;
 	}
 }
 

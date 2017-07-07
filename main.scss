@@ -60,7 +60,7 @@
 		margin: 0;
 	}
 
-	.n-typeahead__link {
+	.n-typeahead__target {
 		cursor: pointer;
 		color: getColor('black-80');
 		border-bottom: 0;
@@ -114,11 +114,11 @@
 	}
 
 	// hide item divider at bottom of last item
-	.n-typeahead__item:last-child .n-typeahead__link:before {
+	.n-typeahead__item:last-child .n-typeahead__target:before {
 		opacity: 0;
 	}
 
-	.n-typeahead__link--tail {
+	.n-typeahead__target--tail {
 
 		&:after {
 			@include oIconsGetIcon(arrow-right, getColor('black-80'), 14);
@@ -131,16 +131,16 @@
 		}
 	}
 
-	.n-typeahead__link--news {
+	.n-typeahead__target--news {
 		color: getColor('claret');
 	}
 
 	// for nice alignment of equity name and index
-	.n-typeahead__link--equities {
+	.n-typeahead__target--equities {
 		display: flex;
 	}
 
-	.n-typeahead__link__equity-name {
+	.n-typeahead__target__equity-name {
 		flex: 1 1 auto;
 	}
 

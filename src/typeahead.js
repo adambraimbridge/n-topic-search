@@ -83,9 +83,21 @@ class Typeahead {
 			}
 		});
 
+		this.searchEl.addEventListener('focus', this.onFocus);
+		this.searchEl.addEventListener('click', this.onFocus);
+
+		// prevent scroll to item
+		this.suggestionListContainer.addEventListener('keydown', ev => {
+			if (ev.which === 40 || ev.which === 38) {
+				ev.preventDefault();
+			}
+		})
+
 		this.suggestionListContainer.addEventListener('keyup', ev => {
 			switch(ev.which) {
-				case 13 : return; // enter
+				case 13 :
+					this.onSelect(ev);
+				break;
 				case 9 : return; // tab
 				case 40 :
 					this.onDownArrow(ev);
@@ -98,8 +110,8 @@ class Typeahead {
 			}
 		})
 
-		this.searchEl.addEventListener('focus', this.onFocus);
-		this.searchEl.addEventListener('click', this.onFocus);
+		this.suggestionListContainer.addEventListener('click', ev => this.onSelect(ev))
+
 	}
 
 	// EVENT HANDLERS
@@ -118,39 +130,36 @@ class Typeahead {
 	}
 
 	onDownArrow (ev) {
-		console.log(ev)
-		this.suggestionLinks = Array.from(this.suggestionListContainer.querySelectorAll('.n-typeahead__link'));
-		if (this.suggestionLinks.length) {
-			this.suggestionLinks[0].focus();
+		if (this.suggestionTargets.length) {
+			const position = (this.suggestionTargets.indexOf(ev.target) + 1) % this.suggestionTargets.length;
+			this.suggestionTargets[position].focus();
 		}
+		ev.preventDefault(); //disable page scrolling
 	}
 
-	onUpArrow () {
-			// 		if (ev.which === KEYS.DOWN_ARROW) {
-			// 	const index = this.items.indexOf(ev.target);
-			// 	const newIndex = index + 1;
-			// 	if (newIndex < this.items.length) {
-			// 		this.items[newIndex].focus();
-			// 	} else {
-			// 		this.items[0].focus();
-			// 	}
-			// 	ev.preventDefault(); //disable page scrolling
-			// 	return;
-			// }
-
-			// if (ev.which === KEYS.UP_ARROW) {
-			// 	const index = this.items.indexOf(ev.target);
-			// 	const newIndex = index - 1;
-			// 	if (newIndex < 0) {
-			// 		this.options.searchEl.focus();
-			// 	} else {
-			// 		this.items[newIndex].focus();
-			// 	}
-			// 	ev.preventDefault(); //disable page scrolling
-			// }
+	onSelect (ev) {
+		let target = ev.target;
+		while (!target.classList.contains('n-typeahead__target')) {
+			target = target.parentNode;
+			if (target.classList.contains('n-typeahead')) {
+				// click was not on an item
+				return;
+			}
+		}
+		this.suggestionsView.handleSelection(target, ev)
 	}
 
-
+	onUpArrow (ev) {
+		if (this.suggestionTargets.length) {
+			const oldPosition = this.suggestionTargets.indexOf(ev.target);
+			if (oldPosition === 0) {
+				this.searchEl.focus();
+			} else {
+				this.suggestionTargets[(oldPosition - 1) % this.suggestionTargets.length].focus();
+			}
+		}
+		ev.preventDefault(); //disable page scrolling
+	}
 
 	// INTERNALS
 	getSuggestions (value) {
@@ -193,6 +202,7 @@ class Typeahead {
 			searchTerm: this.searchTerm,
 			suggestions: this.suggestions
 		});
+		this.suggestionTargets = Array.from(this.suggestionListContainer.querySelectorAll('.n-typeahead__target'));
 		this.show();
 	}
 
@@ -208,7 +218,7 @@ class Typeahead {
 	reset () {
 		this.hide();
 		this.suggestions = [];
-		this.suggestionLinks = [];
+		this.suggestionTargets = [];
 		this.suggestionsView.setState({
 			suggestions: {
 				tags: [],
