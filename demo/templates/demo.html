@@ -1,12 +1,15 @@
-
-<form class="o-header__search-form" action="/search" role="search" aria-label="Site search" data-typeahead="" data-typeahead-categories="concepts,equities" data-typeahead-view-all="" _lpchecked="1">
-	<label class="o-header__visually-hidden" for="o-header-search-term-primary">Search the <abbr title="Financial Times">FT</abbr></label>
-	<input class="o-header__search-term" id="o-header-search-term-primary" name="q" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-trackable="search-term" placeholder="Search the FT" data-typeahead-input="">
+<form class="search-suggestions" data-typeahead data-typeahead-categories="concepts,equities" data-typeahead-view-all>
+	<input data-typeahead-input>
 	<button class="o-header__search-submit" type="submit" data-trackable="search-submit">
 		Search
 	</button>
-	<button class="o-header__search-close o--if-js" type="button" aria-controls="o-header-search-primary" title="Close search bar" data-trackable="close" data-o-toggle--js="true" aria-expanded="true">
-		<span class="o-header__visually-hidden">Close</span>
+	<div class="n-typeahead" hidden="" data-trackable="typeahead"></div>
+</form>
+
+<form class="topic-suggestions" data-typeahead data-typeahead-categories="concepts" data-typeahead-view-all>
+	<input data-typeahead-input>
+	<button class="o-header__search-submit" type="submit" data-trackable="search-submit">
+		Search
 	</button>
-	<div><div class="n-typeahead" hidden="" data-trackable="typeahead"></div></div>
+	<div class="n-typeahead" hidden="" data-trackable="typeahead"></div>
 </form>

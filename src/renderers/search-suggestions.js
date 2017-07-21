@@ -1,10 +1,5 @@
-const morphdom = require('morphdom');
-const delegate = require('ftdomdelegate');
 const DISPLAY_ITEMS = 5;
-
-function regExpEscape (s) {
-	return s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
-}
+import BaseRenderer from './base-renderer';
 
 const headingMapping = {
 	concepts: 'News',
@@ -22,30 +17,12 @@ export default function (container, options) {
 	return new SuggestionList(container, options)
 }
 
-class SuggestionList {
+class SuggestionList extends BaseRenderer {
 	constructor (container, options) {
-		this.container = container;
-		this.options = options;
-
-		this.state = {
-			suggestions: options.categories.reduce((containers, name) => {
-				containers[name] = [];
-				return containers
-			}, {})
-		}
+		super(container, options);
 		this.renderSuggestionGroup = this.renderSuggestionGroup.bind(this);
 		this.createHtml();
 		this.render();
-	}
-
-	setState (state) {
-		this.state = state;
-		this.createHtml();
-		this.render();
-	}
-
-	highlight (text) {
-		return text.replace(RegExp(regExpEscape(this.state.searchTerm), 'gi'), '<mark>$&</mark>');
 	}
 
 	renderTailLink (group) {
@@ -54,8 +31,8 @@ class SuggestionList {
 				class="n-typeahead__target n-typeahead__target--tail"
 				href="${group.tailLink.url}"
 				data-trackable="${group.tailLink.trackable}""
-			`
-			return `<a ${linkAttrs} tabindex="0">${group.tailLink.innerHtml}</a>`
+			`;
+			return `<a ${linkAttrs} tabindex="0">${group.tailLink.innerHtml}</a>`;
 		}
 	}
 
@@ -82,9 +59,9 @@ class SuggestionList {
 				<li class="n-typeahead__item">
 					${this.renderTailLink(group)}
 				</li>
-			</ul>`
+			</ul>`;
 		}
-		html += '</div>'
+		html += '</div>';
 		return html;
 	}
 
@@ -142,19 +119,7 @@ class SuggestionList {
 				data-trackable="typeahead"
 			>
 				${ suggestions.map(this.renderSuggestionGroup) }
-			</div>`
-	}
-
-	render () {
-		if (this.container.innerHTML.trim()) {
-			const frag = document.createDocumentFragment();
-			frag.appendChild(document.createElement('div'));
-			frag.firstChild.insertAdjacentHTML('beforeend', this.newHtml)
-			morphdom(this.container, frag.firstChild.firstChild)
-		} else {
-			this.container.innerHTML = this.newHtml;
-		}
-		this.newHtml = '';
+			</div>`;
 	}
 
 	handleSelection (el, ev) {

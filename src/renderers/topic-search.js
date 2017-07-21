@@ -1,5 +1,5 @@
-const React = require('react');
 import { broadcast } from 'n-ui-foundations';
+import BaseRenderer from './base-renderer';
 
 function regExpEscape (s) {
 	return s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -11,80 +11,48 @@ const KEYS = {
 	DOWN_ARROW: 40
 };
 
-export class TagSuggestions extends React.Component {
-	constructor (props) {
-		super(props);
+
+export default function (container, options) {
+	return new TopicSearch(container, options)
+}
+
+class TopicSearch extends BaseRenderer {
+	constructor (container, options) {
+		super(container, options);
+		this.createHtml();
+		this.render();
 	}
 
-	highlight (text) {
-		return text.replace(RegExp(regExpEscape(this.props.searchTerm), 'gi'), '<mark>$&</mark>');
-	}
-
-	handleSelect (ev) {
+	handleSelection (el, ev) {
 		ev.stopPropagation();
-		let target = ev.target;
-		while (!target.classList.contains('n-typeahead__link')) {
-			target = target.parentNode;
-		}
-		broadcast.call(ev.target, 'next.filter-suggestion.select', target.dataset);
+		broadcast.call(el, 'next.filter-suggestion.select', el.dataset);
 	}
 
-	handleKeyDown (ev) {
-		if (ev.which === KEYS.ENTER) {
-			return;
-		}
+	createHtml () {
+		const hasSuggestions = this.state.suggestions.concepts && this.state.suggestions.concepts.length;
 
-		if (ev.which === KEYS.DOWN_ARROW) {
-			const index = this.items.indexOf(ev.target);
-			const newIndex = index + 1;
-			if (newIndex < this.items.length) {
-				this.items[newIndex].focus();
-			} else {
-				this.items[0].focus();
-			}
-			ev.preventDefault(); //disable page scrolling
-			return;
-		}
-
-		if (ev.which === KEYS.UP_ARROW) {
-			const index = this.items.indexOf(ev.target);
-			const newIndex = index - 1;
-			if (newIndex < 0) {
-				this.props.searchEl.focus();
-			} else {
-				this.items[newIndex].focus();
-			}
-			ev.preventDefault(); //disable page scrolling
-		}
-	}
-
-	render () {
-		const hasConcepts = this.props.suggestions.concepts && this.props.suggestions.concepts.length;
-
-		const suggestions = hasConcepts ? this.props.suggestions.concepts
-			.filter(concept => !this.props.selectedTags.includes(concept.prefLabel))
+		const suggestions = hasSuggestions ? this.state.suggestions.concepts
+			// .filter(concept => !this.options.selectedTags.includes(concept.prefLabel))
 			.slice(0, 5)
 			.map(suggestion => Object.assign({
 				html: this.highlight(suggestion.prefLabel)
 			}, suggestion)) : [];
 		this.items = [];
 
-		return <ul
-			className="n-typeahead search-filtering__suggestions"
-			hidden={ !hasConcepts }
-			data-trackable="typeahead"
-			onKeyDown={this.handleKeyDown.bind(this)}
-			onClick={this.handleSelect}>
-			{ suggestions.map(suggestion => (
-					<li className="n-typeahead__item">
-						<button type="button" className="n-typeahead__link search-filtering__suggestion"
-							ref={(c) => { this.items.push(c); }}
+		this.newHtml = `<ul
+			class="n-typeahead search-filtering__suggestions"
+			${ hasSuggestions ? '' : 'hidden'}
+			data-trackable="typeahead">
+			${ suggestions.map(suggestion =>
+					`<li class="n-typeahead__item">
+						<button type="button" class="n-typeahead__target search-filtering__suggestion"
 							data-trackable="concept-suggestion"
-							data-suggestion-id={suggestion.id}
-							data-suggestion-name={suggestion.prefLabel}
-							dangerouslySetInnerHTML={{__html:suggestion.html}}></button>
-					</li>
-				)) }
-		</ul>;
+							data-suggestion-id=${suggestion.id}
+							data-suggestion-name=${suggestion.prefLabel}>${suggestion.html}</button>
+					</li>`
+				).join('') }
+		</ul>`;
 	}
 }
+
+

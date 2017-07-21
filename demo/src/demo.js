@@ -1,3 +1,4 @@
 import Typeahead from '../../src/typeahead';
-
-new Typeahead(document.querySelector('.o-header__search-form'));
+import TopicSearch from  '../../src/renderers/topic-search';
+new Typeahead(document.querySelector('.search-suggestions'));
+new Typeahead(document.querySelector('.topic-suggestions'), TopicSearch);
