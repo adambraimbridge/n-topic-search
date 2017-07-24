@@ -7,6 +7,8 @@ function regExpEscape (s) {
 export default class BaseRenderer {
 	constructor (container, options) {
 		this.container = container;
+		// ensure there is a dom node that morphdom can act on
+		this.container.appendChild(document.createElement('div'));
 		this.options = options;
 
 		this.state = {
@@ -32,7 +34,7 @@ export default class BaseRenderer {
 			const frag = document.createDocumentFragment();
 			frag.appendChild(document.createElement('div'));
 			frag.firstChild.insertAdjacentHTML('beforeend', this.newHtml)
-			morphdom(this.container, frag.firstChild.firstChild)
+			morphdom(this.container.firstChild, frag.firstChild.firstChild)
 		} else {
 			this.container.innerHTML = this.newHtml;
 		}

@@ -31,9 +31,13 @@ function isOutside (el, container) {
 }
 
 class Typeahead {
-	constructor (containerEl, listComponent) {
+	constructor (containerEl, {
+		listComponent = suggestionList,
+		preSuggest = a => a
+	} = {}) {
 		this.container = containerEl;
-		this.listComponent = listComponent || suggestionList;
+		this.listComponent = listComponent;
+		this.preSuggest = preSuggest;
 		this.searchEl = this.container.querySelector('[data-typeahead-input]');
 		this.dataSrc = `//${window.location.host}/search-api/suggestions?partial=`;
 		this.categories = (this.container.getAttribute('data-typeahead-categories') || 'tags').split(',');
@@ -130,6 +134,7 @@ class Typeahead {
 	}
 
 	onDownArrow (ev) {
+		console.log(this.suggestionTargets);
 		if (this.suggestionTargets.length) {
 			const position = (this.suggestionTargets.indexOf(ev.target) + 1) % this.suggestionTargets.length;
 			this.suggestionTargets[position].focus();
@@ -146,7 +151,7 @@ class Typeahead {
 				return;
 			}
 		}
-		this.suggestionsView.handleSelection(target, ev)
+		this.suggestionsView.handleSelection(target, ev, this)
 	}
 
 	onUpArrow (ev) {
@@ -171,7 +176,7 @@ class Typeahead {
 					}
 					return response.json();
 				})
-				.then(suggestions => this.suggest(suggestions))
+				.then(suggestions => this.suggest(this.preSuggest(suggestions)))
 				.catch((err) => {
 					setTimeout(() => {
 						throw err;
@@ -202,8 +207,8 @@ class Typeahead {
 			searchTerm: this.searchTerm,
 			suggestions: this.suggestions
 		});
-		this.suggestionTargets = Array.from(this.suggestionListContainer.querySelectorAll('.n-typeahead__target'));
 		this.show();
+		this.suggestionTargets = Array.from(this.suggestionListContainer.querySelectorAll('.n-typeahead__target'));
 	}
 
 	unsuggest () {

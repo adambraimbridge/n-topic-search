@@ -23,32 +23,31 @@ class TopicSearch extends BaseRenderer {
 		this.render();
 	}
 
-	handleSelection (el, ev) {
+	handleSelection (el, ev, parent) {
 		ev.stopPropagation();
-		broadcast.call(el, 'next.filter-suggestion.select', el.dataset);
+		broadcast.call(el, 'n-topic-search.select', el.dataset);
+		parent.reset();
 	}
 
 	createHtml () {
 		const hasSuggestions = this.state.suggestions.concepts && this.state.suggestions.concepts.length;
 
 		const suggestions = hasSuggestions ? this.state.suggestions.concepts
-			// .filter(concept => !this.options.selectedTags.includes(concept.prefLabel))
 			.slice(0, 5)
 			.map(suggestion => Object.assign({
 				html: this.highlight(suggestion.prefLabel)
 			}, suggestion)) : [];
-		this.items = [];
 
 		this.newHtml = `<ul
-			class="n-typeahead search-filtering__suggestions"
+			class="n-typeahead n-typeahead--single-category"
 			${ hasSuggestions ? '' : 'hidden'}
 			data-trackable="typeahead">
 			${ suggestions.map(suggestion =>
 					`<li class="n-typeahead__item">
 						<button type="button" class="n-typeahead__target search-filtering__suggestion"
 							data-trackable="concept-suggestion"
-							data-suggestion-id=${suggestion.id}
-							data-suggestion-name=${suggestion.prefLabel}>${suggestion.html}</button>
+							data-suggestion-id="${suggestion.id}"
+							data-suggestion-name="${suggestion.prefLabel}">${suggestion.html}</button>
 					</li>`
 				).join('') }
 		</ul>`;

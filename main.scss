@@ -25,6 +25,13 @@
 		}
 	}
 
+
+	.n-typeahead--single-category {
+		padding: 0;
+		display: block;
+	}
+
+
 	.n-typeahead[hidden],
 	.n-typeahead:empty {
 		display: none;
@@ -68,6 +75,11 @@
 		display: block;
 		text-decoration: none;
 		padding: $spacing-unit/2 $spacing-unit;
+		display: block;
+		background: none;
+		border: 0;
+		width: 100%;
+		text-align: left;
 
 		// for positioning the dividing line
 		position: relative;
@@ -148,3 +160,4 @@
 		padding: 0 $spacing-unit;
 	}
 }
+
