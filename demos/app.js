@@ -13,8 +13,8 @@ const app = module.exports = express({
 	withNavigation: false,
 	withAnonMiddleware: false,
 	hasHeadCss: false,
-	layoutsDir: 'demo/templates',
-	viewsDirectory: '/demo/templates',
+	layoutsDir: 'demos/templates',
+	viewsDirectory: '/demos/templates',
 	partialsDirectory: process.cwd(),
 	directory: process.cwd(),
 	demo: true,
@@ -22,7 +22,7 @@ const app = module.exports = express({
 });
 
 app.get('/', (req, res) => {
-	res.render('demo', { layout: 'layout' });
+	res.render('demo');
 });
 
 app.get('/search-api/suggestions', (req, res) => {

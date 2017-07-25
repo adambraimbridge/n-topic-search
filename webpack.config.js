@@ -15,7 +15,7 @@ module.exports = {
 	// Generate source maps
 	devtool: 'source-map',
 	entry: {
-		 './public/main.js': './demo/src/demo.js'
+		 './public/main.js': './demos/src/demo.js'
 	},
 	resolve: {
 
@@ -51,7 +51,7 @@ module.exports = {
 
 	output: {
 		filename: '[name]',
-		devtoolModuleFilenameTemplate: 'n-ui//[resource-path]?[loaders]'
+		devtoolModuleFilenameTemplate: 'n-topic-search//[resource-path]?[loaders]'
 	}
 
 };

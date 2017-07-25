@@ -11,6 +11,7 @@
     "bower-resolve-webpack-plugin": "^1.0.3",
     "chalk": "^2.0.1",
     "node-sass": "^4.5.3",
+    "pa11y-ci": "^1.2.0",
     "webpack": "^3.0.0"
   },
   "scripts": {
