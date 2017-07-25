@@ -1,24 +1,35 @@
 # n-topic-search
 
-Search topics based on a keyword
+Search for topics and equities based on a keyword
 
-## it
+## Usage
 
-(containerEl, listComponent)
+```js
+const topicSearch = require('n-topic-search');
 
-- containerEl = element containing the search input and element to put suggestions in
-
+new topicSearch(containerEl)
 ```
 
+- containerEl:  element containing the search input and element to put suggestions in
+
+### Markup
+
+```
 <form data-typeahead data-typeahead-categories="concepts,equities" data-typeahead-view-all>
 	<input data-typeahead-input>
-	<button class="o-header__search-submit" type="submit" data-trackable="search-submit">
+	<button type="submit">
 		Search
 	</button>
-	<div class="n-typeahead" hidden="" data-trackable="typeahead"></div>
 </form>
 
 ```
+
+#### data attribute options
+- categories: which categories of results to return
+- view-all: whether to include 'view all' links
+
+### Experimental
+The constructor also accepts a second parameter'
 
 - listComponent a function implementing the following interface
 
@@ -31,7 +42,7 @@ Search topics based on a keyword
 			searchEl: this.searchEl
 		}
 
-		returns object implementing
+		returns an object implementing the following methods
 
 		setState
 
