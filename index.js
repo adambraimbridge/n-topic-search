@@ -1,6 +1,6 @@
 const Delegate = require('ftdomdelegate');
 import { debounce } from 'n-ui-foundations';
-import suggestionList from './renderers/search-suggestions';
+import suggestionList from './src/renderers/search-suggestions';
 
 const KEYS = {
 	ENTER: 13,
@@ -30,7 +30,7 @@ function isOutside (el, container) {
 	return !el || el === document;
 }
 
-class Typeahead {
+class TopicSearch {
 	constructor (containerEl, {
 		listComponent = suggestionList,
 		preSuggest = a => a
@@ -38,11 +38,11 @@ class Typeahead {
 		this.container = containerEl;
 		this.listComponent = listComponent;
 		this.preSuggest = preSuggest;
-		this.searchEl = this.container.querySelector('[data-typeahead-input]');
+		this.searchEl = this.container.querySelector('[data-n-topic-search-input]');
 		this.dataSrc = `//${window.location.host}/search-api/suggestions?partial=`;
-		this.categories = (this.container.getAttribute('data-typeahead-categories') || 'tags').split(',');
-		this.itemTag = this.container.getAttribute('data-typeahead-item-tag') || 'a';
-		this.includeViewAllLink = this.container.hasAttribute('data-typeahead-view-all');
+		this.categories = (this.container.getAttribute('data-n-topic-search-categories') || 'tags').split(',');
+		this.itemTag = this.container.getAttribute('data-n-topic-search-item-tag') || 'a';
+		this.includeViewAllLink = this.container.hasAttribute('data-n-topic-search-view-all');
 		this.minLength = 2;
 		this.init();
 	}
@@ -134,7 +134,6 @@ class Typeahead {
 	}
 
 	onDownArrow (ev) {
-		console.log(this.suggestionTargets);
 		if (this.suggestionTargets.length) {
 			const position = (this.suggestionTargets.indexOf(ev.target) + 1) % this.suggestionTargets.length;
 			this.suggestionTargets[position].focus();
@@ -144,9 +143,9 @@ class Typeahead {
 
 	onSelect (ev) {
 		let target = ev.target;
-		while (!target.classList.contains('n-typeahead__target')) {
+		while (!target.classList.contains('n-topic-search__target')) {
 			target = target.parentNode;
-			if (target.classList.contains('n-typeahead')) {
+			if (target.classList.contains('n-topic-search')) {
 				// click was not on an item
 				return;
 			}
@@ -208,7 +207,7 @@ class Typeahead {
 			suggestions: this.suggestions
 		});
 		this.show();
-		this.suggestionTargets = Array.from(this.suggestionListContainer.querySelectorAll('.n-typeahead__target'));
+		this.suggestionTargets = Array.from(this.suggestionListContainer.querySelectorAll('.n-topic-search__target'));
 	}
 
 	unsuggest () {
@@ -249,4 +248,4 @@ class Typeahead {
 	}
 }
 
-export default Typeahead;
+export default TopicSearch;

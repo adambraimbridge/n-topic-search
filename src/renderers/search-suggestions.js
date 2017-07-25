@@ -28,7 +28,7 @@ class SuggestionList extends BaseRenderer {
 	renderTailLink (group) {
 		if (group.tailLink) {
 			const linkAttrs = `
-				class="n-typeahead__target n-typeahead__target--tail"
+				class="n-topic-search__target n-topic-search__target--tail"
 				href="${group.tailLink.url}"
 				data-trackable="${group.tailLink.trackable}""
 			`;
@@ -37,8 +37,8 @@ class SuggestionList extends BaseRenderer {
 	}
 
 	renderSuggestionLink (suggestion, group) {
-		return `<li class="n-typeahead__item">
-			<a class="n-typeahead__target ${group.linkClassName}"
+		return `<li class="n-topic-search__item">
+			<a class="n-topic-search__target ${group.linkClassName}"
 				href="${suggestion.url}"
 				tabindex="0"
 				data-trackable="link"
@@ -49,14 +49,14 @@ class SuggestionList extends BaseRenderer {
 	}
 
 	renderSuggestionGroup (group) {
-		let html = `<div class="n-typeahead__group ${group.className}" data-trackable="${group.trackable}">`
+		let html = `<div class="n-topic-search__group ${group.className}" data-trackable="${group.trackable}">`
 
-		html += this.options.categories.length > 1 ? `<div class="n-typeahead__heading">${group.heading}</div>` : '';
+		html += this.options.categories.length > 1 ? `<div class="n-topic-search__heading">${group.heading}</div>` : '';
 
 		if (group.suggestions.length || group.emptyHtml) {
-			html += `<ul class="n-typeahead__item-list">
+			html += `<ul class="n-topic-search__item-list">
 				${group.suggestions.map(suggestion => this.renderSuggestionLink(suggestion, group)).join('')}
-				<li class="n-typeahead__item">
+				<li class="n-topic-search__item">
 					${this.renderTailLink(group)}
 				</li>
 			</ul>`;
@@ -75,7 +75,7 @@ class SuggestionList extends BaseRenderer {
 		if (this.options.categories.includes('concepts')) {
 			suggestions.push({
 				heading: headingMapping['concepts'],
-				linkClassName: 'n-typeahead__target--news',
+				linkClassName: 'n-topic-search__target--news',
 				trackable: 'news',
 				suggestions: this.state.suggestions.concepts.slice(0, DISPLAY_ITEMS)
 					.map(suggestion => ({
@@ -97,11 +97,11 @@ class SuggestionList extends BaseRenderer {
 			suggestions.push({
 				heading: headingMapping['equities'],
 				trackable: 'equities',
-				linkClassName: 'n-typeahead__target--equities',
-				emptyHtml: `<div className="n-typeahead__no-results-message">No equities found</div>`,
+				linkClassName: 'n-topic-search__target--equities',
+				emptyHtml: `<div className="n-topic-search__no-results-message">No equities found</div>`,
 				suggestions: this.state.suggestions.equities.slice(0, DISPLAY_ITEMS)
 					.map(suggestion => ({
-						html: `<span class="n-typeahead__target__equity-name">${this.highlight(suggestion.name)}</span><abbr>${this.highlight(suggestion.symbol)}</abbr>`,
+						html: `<span class="n-topic-search__target__equity-name">${this.highlight(suggestion.name)}</span><abbr>${this.highlight(suggestion.symbol)}</abbr>`,
 						url: suggestion.url,
 						id: suggestion.symbol,
 						type: 'equity'
@@ -114,11 +114,11 @@ class SuggestionList extends BaseRenderer {
 			});
 		}
 		this.newHtml = `<div
-				class="n-typeahead"
+				class="n-topic-search"
 				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
 			>
-				${ suggestions.map(this.renderSuggestionGroup) }
+				${ suggestions.map(this.renderSuggestionGroup).join('') }
 			</div>`;
 	}
 

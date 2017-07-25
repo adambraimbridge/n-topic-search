@@ -39,12 +39,12 @@ class TopicSearch extends BaseRenderer {
 			}, suggestion)) : [];
 
 		this.newHtml = `<ul
-			class="n-typeahead n-typeahead--single-category"
+			class="n-topic-search n-topic-search--single-category"
 			${ hasSuggestions ? '' : 'hidden'}
 			data-trackable="typeahead">
 			${ suggestions.map(suggestion =>
-					`<li class="n-typeahead__item">
-						<button type="button" class="n-typeahead__target search-filtering__suggestion"
+					`<li class="n-topic-search__item">
+						<button type="button" class="n-topic-search__target search-filtering__suggestion"
 							data-trackable="concept-suggestion"
 							data-suggestion-id="${suggestion.id}"
 							data-suggestion-name="${suggestion.prefLabel}">${suggestion.html}</button>
