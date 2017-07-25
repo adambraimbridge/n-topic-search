@@ -14,9 +14,9 @@ export default class BaseRenderer {
 		this.state = {
 			suggestions: options.categories.reduce((containers, name) => {
 				containers[name] = [];
-				return containers
+				return containers;
 			}, {})
-		}
+		};
 	}
 
 	setState (state) {
@@ -33,8 +33,8 @@ export default class BaseRenderer {
 		if (this.container.innerHTML.trim()) {
 			const frag = document.createDocumentFragment();
 			frag.appendChild(document.createElement('div'));
-			frag.firstChild.insertAdjacentHTML('beforeend', this.newHtml)
-			morphdom(this.container.firstChild, frag.firstChild.firstChild)
+			frag.firstChild.insertAdjacentHTML('beforeend', this.newHtml);
+			morphdom(this.container.firstChild, frag.firstChild.firstChild);
 		} else {
 			this.container.innerHTML = this.newHtml;
 		}

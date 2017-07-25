@@ -2,12 +2,6 @@ const Delegate = require('ftdomdelegate');
 import { debounce } from 'n-ui-foundations';
 import suggestionList from './src/renderers/search-suggestions';
 
-const KEYS = {
-	ENTER: 13,
-	UP_ARROW: 38,
-	DOWN_ARROW: 40
-}
-
 function getNonMatcher (container) {
 	if (typeof container === 'string') {
 		return function (el) {
@@ -69,7 +63,7 @@ class TopicSearch {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
 			}
-		})
+		});
 
 		this.searchEl.addEventListener('keyup', ev => {
 			switch(ev.which) {
@@ -95,7 +89,7 @@ class TopicSearch {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
 			}
-		})
+		});
 
 		this.suggestionListContainer.addEventListener('keyup', ev => {
 			switch(ev.which) {
@@ -112,9 +106,9 @@ class TopicSearch {
 				default :
 				break;
 			}
-		})
+		});
 
-		this.suggestionListContainer.addEventListener('click', ev => this.onSelect(ev))
+		this.suggestionListContainer.addEventListener('click', ev => this.onSelect(ev));
 
 	}
 
@@ -150,7 +144,7 @@ class TopicSearch {
 				return;
 			}
 		}
-		this.suggestionsView.handleSelection(target, ev, this)
+		this.suggestionsView.handleSelection(target, ev, this);
 	}
 
 	onUpArrow (ev) {
@@ -244,7 +238,7 @@ class TopicSearch {
 						this.hide();
 					}
 				});
-			})
+			});
 	}
 }
 

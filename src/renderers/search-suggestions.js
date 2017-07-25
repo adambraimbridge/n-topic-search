@@ -4,17 +4,10 @@ import BaseRenderer from './base-renderer';
 const headingMapping = {
 	concepts: 'News',
 	equities: 'Securities'
-}
-
-const KEYS = {
-	ENTER: 13,
-	UP_ARROW: 38,
-	DOWN_ARROW: 40
-}
-
+};
 
 export default function (container, options) {
-	return new SuggestionList(container, options)
+	return new SuggestionList(container, options);
 }
 
 class SuggestionList extends BaseRenderer {
@@ -49,7 +42,7 @@ class SuggestionList extends BaseRenderer {
 	}
 
 	renderSuggestionGroup (group) {
-		let html = `<div class="n-topic-search__group ${group.className}" data-trackable="${group.trackable}">`
+		let html = `<div class="n-topic-search__group ${group.className}" data-trackable="${group.trackable}">`;
 
 		html += this.options.categories.length > 1 ? `<div class="n-topic-search__heading">${group.heading}</div>` : '';
 
@@ -98,7 +91,7 @@ class SuggestionList extends BaseRenderer {
 				heading: headingMapping['equities'],
 				trackable: 'equities',
 				linkClassName: 'n-topic-search__target--equities',
-				emptyHtml: `<div className="n-topic-search__no-results-message">No equities found</div>`,
+				emptyHtml: '<div className="n-topic-search__no-results-message">No equities found</div>',
 				suggestions: this.state.suggestions.equities.slice(0, DISPLAY_ITEMS)
 					.map(suggestion => ({
 						html: `<span class="n-topic-search__target__equity-name">${this.highlight(suggestion.name)}</span><abbr>${this.highlight(suggestion.symbol)}</abbr>`,
@@ -128,5 +121,3 @@ class SuggestionList extends BaseRenderer {
 		return;
 	}
 }
-
-

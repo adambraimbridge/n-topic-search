@@ -1,19 +1,8 @@
 import { broadcast } from 'n-ui-foundations';
 import BaseRenderer from './base-renderer';
 
-function regExpEscape (s) {
-	return s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
-}
-
-const KEYS = {
-	ENTER: 13,
-	UP_ARROW: 38,
-	DOWN_ARROW: 40
-};
-
-
 export default function (container, options) {
-	return new TopicSearch(container, options)
+	return new TopicSearch(container, options);
 }
 
 class TopicSearch extends BaseRenderer {
@@ -53,5 +42,3 @@ class TopicSearch extends BaseRenderer {
 		</ul>`;
 	}
 }
-
-

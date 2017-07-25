@@ -5,7 +5,6 @@ build.
 If something is required for both, please add it here.
 */
 
-const path = require('path');
 const BowerResolvePlugin = require('bower-resolve-webpack-plugin');
 
 module.exports = {

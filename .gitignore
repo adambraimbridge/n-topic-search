@@ -1,4 +1,7 @@
 node_modules
 bower_components
-public
+/public/
 pa11y_screenCapture
+.editorconfig
+.eslintrc.js
+.scss-lint.yml
