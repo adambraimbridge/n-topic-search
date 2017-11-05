@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "morphdom": "^2.3.2",
-    "n-ui-foundations": "^2.1.0"
+    "n-ui-foundations": "^3.0.0-beta"
   },
   "description": "",
   "main": ""
