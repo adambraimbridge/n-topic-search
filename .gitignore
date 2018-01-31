@@ -4,4 +4,5 @@ bower_components
 pa11y_screenCapture
 .editorconfig
 .eslintrc.js
-.scss-lint.yml
+.stylelintrc
+package-lock.json
