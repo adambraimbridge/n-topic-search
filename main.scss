@@ -140,7 +140,7 @@
 		}
 
 		&:hover:after {
-			@include oIconsGetIcon(arrow-right, getColor('white'), 14)
+			@include oIconsGetIcon(arrow-right, getColor('white'), 14);
 		}
 	}
 
