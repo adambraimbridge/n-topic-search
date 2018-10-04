@@ -2,7 +2,7 @@ const DISPLAY_ITEMS = 5;
 import BaseRenderer from './base-renderer';
 
 const headingMapping = {
-	concepts: 'News',
+	concepts: 'Topics',
 	equities: 'Securities'
 };
 
