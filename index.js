@@ -1,4 +1,4 @@
-import Delegate from 'ftdomdelegate'
+import Delegate from 'ftdomdelegate';
 import { debounce } from 'n-ui-foundations';
 import suggestionList from './src/renderers/search-suggestions';
 
@@ -65,6 +65,8 @@ class TopicSearch {
 		this.searchEl.addEventListener('keydown', ev => {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
+			} else if (ev.which === 9) {
+				this.onTab(ev);
 			}
 		});
 
@@ -74,13 +76,13 @@ class TopicSearch {
 				case 9 : return; // tab
 				case 27: //esc
 					this.hide();
-				break;
+					break;
 				case 40 :
 					this.onDownArrow(ev);
-				break;
+					break;
 				default :
 					this.onType(ev);
-				break;
+					break;
 			}
 		});
 
@@ -98,16 +100,16 @@ class TopicSearch {
 			switch(ev.which) {
 				case 13 :
 					this.onSelect(ev);
-				break;
+					break;
 				case 9 : return; // tab
 				case 40 :
 					this.onDownArrow(ev);
-				break;
+					break;
 				case 38 :
 					this.onUpArrow(ev);
-				break;
+					break;
 				default :
-				break;
+					break;
 			}
 		});
 
@@ -136,6 +138,12 @@ class TopicSearch {
 			this.suggestionTargets[position].focus();
 		}
 		ev.preventDefault(); //disable page scrolling
+	}
+
+	onTab (ev) {
+		if (this.suggestionTargets.length) {
+			this.onDownArrow(ev); // functionally the same as hitting the down arrow.
+		}
 	}
 
 	onSelect (ev) {
