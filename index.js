@@ -65,7 +65,7 @@ class TopicSearch {
 		this.searchEl.addEventListener('keydown', ev => {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
-			} else if (ev.which === 9) {
+			} else if (ev.which === 9 && !ev.shiftKey) {
 				this.onTab(ev);
 			}
 		});
