@@ -110,7 +110,7 @@ class SuggestionList extends BaseRenderer {
 			${ hasSuggestions ? `<div
 				aria-live="assertive"
 				class="o-normalise-visually-hidden">
-				Search results have been displayed. These will update automatically as you change your search term.
+				Search results have been displayed. To jump to the list of suggestions press tab.
 			</div>` : '' }
 			<div
 				class="n-topic-search"
