@@ -106,7 +106,13 @@ class SuggestionList extends BaseRenderer {
 				}
 			});
 		}
-		this.newHtml = `<div
+		this.newHtml = `
+			${ hasSuggestions ? `<div
+				aria-live="assertive"
+				class="o-normalise-visually-hidden">
+				Search results have been displayed. These will update automatically as you change your search term.
+			</div>` : '' }
+			<div
 				class="n-topic-search"
 				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
