@@ -106,7 +106,13 @@ class SuggestionList extends BaseRenderer {
 				}
 			});
 		}
-		this.newHtml = `<div
+		this.newHtml = `
+			${ hasSuggestions ? `<div
+				aria-live="assertive"
+				class="o-normalise-visually-hidden">
+				Search results have been displayed. To jump to the list of suggestions press tab.
+			</div>` : '' }
+			<div
 				class="n-topic-search"
 				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
