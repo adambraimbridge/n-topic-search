@@ -106,19 +106,19 @@ class SuggestionList extends BaseRenderer {
 				}
 			});
 		}
-		this.newHtml = `
-			${ hasSuggestions ? `<div
-				aria-live="assertive"
-				class="o-normalise-visually-hidden">
-				Search results have been displayed. To jump to the list of suggestions press tab.
-			</div>` : '' }
-			<div
+		this.newHtml = `<div
 				class="n-topic-search"
 				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
 			>
 				${ suggestions.map(this.renderSuggestionGroup).join('') }
-			</div>`;
+			</div>
+			${ hasSuggestions ? `<div
+				aria-live="assertive"
+				class="o-normalise-visually-hidden">
+				Search results have been displayed. To jump to the list of suggestions press tab.
+			</div>` : '' }
+			`;
 	}
 
 	handleSelection (el, ev) {
