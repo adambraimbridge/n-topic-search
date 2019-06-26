@@ -98,6 +98,9 @@ class TopicSearch {
 
 		this.suggestionListContainer.addEventListener('keyup', ev => {
 			switch(ev.which) {
+				case 27 : // esc
+					this.hideAndFocusInput();
+					break;
 				case 13 :
 					this.onSelect(ev);
 					break;
@@ -128,8 +131,16 @@ class TopicSearch {
 	}
 
 	onFocus (ev) {
+		// select all of the current text
 		ev.target.setSelectionRange ? ev.target.setSelectionRange(0, ev.target.value.length) : ev.target.select();
-		this.show();
+
+		// If the input is programmatically focussed we may not want to show the suggestions list
+		// e.g. when pressing escape to close the suggestions list.
+		if (this.doNotShow) {
+			this.doNotShow = false;
+		} else {
+			this.show();
+		}
 	}
 
 	onDownArrow (ev) {
@@ -222,6 +233,12 @@ class TopicSearch {
 	hide () {
 		this.suggestionListContainer.setAttribute('hidden', '');
 		this.bodyDelegate.off();
+	}
+
+	hideAndFocusInput () {
+		this.doNotShow = true;
+		this.hide();
+		this.searchEl.focus();
 	}
 
 	reset () {
