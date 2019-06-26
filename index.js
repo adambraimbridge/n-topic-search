@@ -47,7 +47,7 @@ class TopicSearch {
 	init () {
 		this.suggestions = [];
 		this.suggestionListContainer = document.createElement('div');
-		this.searchEl.parentNode.insertBefore(this.suggestionListContainer, null);
+		this.searchEl.parentNode.insertBefore(this.suggestionListContainer, this.searchEl.nextSibling);
 
 		this.suggestionsView = this.listComponent(this.suggestionListContainer, {
 			categories: this.categories,
