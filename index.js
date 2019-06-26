@@ -61,12 +61,10 @@ class TopicSearch {
 		this.onType = debounce(this.onType, 150).bind(this);
 		this.onFocus = this.onFocus.bind(this);
 
-		// prevent scroll to item
+		// prevent scrolling when pressing up and down arrows
 		this.searchEl.addEventListener('keydown', ev => {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
-			} else if (ev.which === 9 && !ev.shiftKey) {
-				this.onTab(ev);
 			}
 		});
 
@@ -89,7 +87,7 @@ class TopicSearch {
 		this.searchEl.addEventListener('focus', this.onFocus);
 		this.searchEl.addEventListener('click', this.onFocus);
 
-		// prevent scroll to item
+		// prevent scrolling when pressing up and down arrows
 		this.suggestionListContainer.addEventListener('keydown', ev => {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
