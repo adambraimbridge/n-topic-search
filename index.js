@@ -133,9 +133,9 @@ class TopicSearch {
 		ev.target.setSelectionRange ? ev.target.setSelectionRange(0, ev.target.value.length) : ev.target.select();
 
 		// If the input is programmatically focussed we may not want to show the suggestions list
-		// e.g. when pressing escape to close the suggestions list.
-		if (this.doNotShow) {
-			this.doNotShow = false;
+		// e.g. when intentionally closing the suggestions list.
+		if (this.preventShowOnFocus) {
+			this.preventShowOnFocus = false;
 		} else {
 			this.show();
 		}
@@ -234,7 +234,9 @@ class TopicSearch {
 	}
 
 	hideAndFocusInput () {
-		this.doNotShow = true;
+		// This flag is used to prevent .show() being called after shifting focus back to
+		// the input element when intending to .hide() the suggestions list.
+		this.preventShowOnFocus = true;
 		this.hide();
 		this.searchEl.focus();
 	}
