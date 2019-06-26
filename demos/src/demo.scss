@@ -1,3 +1,14 @@
 @import 'n-ui-foundations/main';
 @import '../../main';
 @include nTopicSearch;
+
+// If the page only contains the component under test then the body will be same height.
+// This means the component cannot be closed by shifting focus outside of the container.
+html,
+body {
+	min-height: 100vh;
+}
+
+body {
+	padding: 1em;
+}
