@@ -116,7 +116,7 @@ class SuggestionList extends BaseRenderer {
 			${ hasSuggestions ? `<div
 				aria-live="assertive"
 				class="o-normalise-visually-hidden">
-				Search results have been displayed. To jump to the list of suggestions press tab.
+				Search results have been displayed. To jump to the list of suggestions press the down arrow key.
 			</div>` : '' }
 			`;
 	}

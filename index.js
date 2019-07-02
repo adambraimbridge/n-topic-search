@@ -47,7 +47,7 @@ class TopicSearch {
 	init () {
 		this.suggestions = [];
 		this.suggestionListContainer = document.createElement('div');
-		this.searchEl.parentNode.insertBefore(this.suggestionListContainer, null);
+		this.searchEl.parentNode.insertBefore(this.suggestionListContainer, this.searchEl.nextSibling);
 
 		this.suggestionsView = this.listComponent(this.suggestionListContainer, {
 			categories: this.categories,
@@ -61,12 +61,10 @@ class TopicSearch {
 		this.onType = debounce(this.onType, 150).bind(this);
 		this.onFocus = this.onFocus.bind(this);
 
-		// prevent scroll to item
+		// prevent scrolling when pressing up and down arrows
 		this.searchEl.addEventListener('keydown', ev => {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
-			} else if (ev.which === 9 && !ev.shiftKey) {
-				this.onTab(ev);
 			}
 		});
 
@@ -89,7 +87,7 @@ class TopicSearch {
 		this.searchEl.addEventListener('focus', this.onFocus);
 		this.searchEl.addEventListener('click', this.onFocus);
 
-		// prevent scroll to item
+		// prevent scrolling when pressing up and down arrows
 		this.suggestionListContainer.addEventListener('keydown', ev => {
 			if (ev.which === 40 || ev.which === 38) {
 				ev.preventDefault();
@@ -98,6 +96,9 @@ class TopicSearch {
 
 		this.suggestionListContainer.addEventListener('keyup', ev => {
 			switch(ev.which) {
+				case 27 : // esc
+					this.hideAndFocusInput();
+					break;
 				case 13 :
 					this.onSelect(ev);
 					break;
@@ -128,8 +129,16 @@ class TopicSearch {
 	}
 
 	onFocus (ev) {
+		// select all of the current text
 		ev.target.setSelectionRange ? ev.target.setSelectionRange(0, ev.target.value.length) : ev.target.select();
-		this.show();
+
+		// If the input is programmatically focussed we may not want to show the suggestions list
+		// e.g. when intentionally closing the suggestions list.
+		if (this.preventShowOnFocus) {
+			this.preventShowOnFocus = false;
+		} else {
+			this.show();
+		}
 	}
 
 	onDownArrow (ev) {
@@ -222,6 +231,14 @@ class TopicSearch {
 	hide () {
 		this.suggestionListContainer.setAttribute('hidden', '');
 		this.bodyDelegate.off();
+	}
+
+	hideAndFocusInput () {
+		// This flag is used to prevent .show() being called after shifting focus back to
+		// the input element when intending to .hide() the suggestions list.
+		this.preventShowOnFocus = true;
+		this.hide();
+		this.searchEl.focus();
 	}
 
 	reset () {
