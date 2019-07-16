@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "morphdom": "^2.5.4"
+  },
   "devDependencies": {
     "@financial-times/n-gage": "^3.6.0",
     "@financial-times/n-internal-tool": "^2.0.0",
