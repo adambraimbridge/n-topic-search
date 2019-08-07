@@ -41,6 +41,11 @@ class SuggestionList extends BaseRenderer {
 		</li>`;
 	}
 
+	renderErrorMessage(){
+		this.newHtml = `<div class="n-topic-search__error">Search is currently unavailable</div>`;
+		this.render();
+	}
+
 	renderSuggestionGroup (group) {
 		let html = `<div class="n-topic-search__group ${group.className}" data-trackable="${group.trackable}">`;
 
