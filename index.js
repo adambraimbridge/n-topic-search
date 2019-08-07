@@ -191,6 +191,7 @@ class TopicSearch {
 				})
 				.then(suggestions => this.suggest(this.preSuggest(suggestions)))
 				.catch((err) => {
+					this.suggestionsView.renderErrorMessage();
 					setTimeout(() => {
 						throw err;
 					});

@@ -25,6 +25,13 @@
 		}
 	}
 
+	.n-topic-search__error {
+	    position: absolute;
+		top: 100%;
+		left: 0;
+		margin-top: 20px;
+		margin-left: 20px
+	}
 
 	.n-topic-search--single-category {
 		padding: 0;
