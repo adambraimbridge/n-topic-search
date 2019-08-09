@@ -184,7 +184,7 @@ class TopicSearch {
 	// INTERNALS
 	getSuggestions (value) {
 		if (value.length >= this.minLength) {
-			return fetch(this.dataSrc + encodeURIComponent(value))
+			fetch(this.dataSrc + encodeURIComponent(value))
 				.then((response) => {
 					if (!response.ok) {
 						throw new Error(response.statusText);
