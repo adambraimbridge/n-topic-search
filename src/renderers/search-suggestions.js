@@ -110,6 +110,7 @@ class SuggestionList extends BaseRenderer {
 				class="n-topic-search"
 				${ hasSuggestions ? '' : 'hidden'}
 				data-trackable="typeahead"
+				aria-live="assertive"
 			>
 				${ suggestions.map(this.renderSuggestionGroup).join('') }
 			</div>
