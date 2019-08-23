@@ -106,19 +106,21 @@ class SuggestionList extends BaseRenderer {
 				}
 			});
 		}
-		this.newHtml = `<div
-				class="n-topic-search"
-				${ hasSuggestions ? '' : 'hidden'}
-				data-trackable="typeahead"
-				aria-live="assertive"
-			>
-				${ suggestions.map(this.renderSuggestionGroup).join('') }
+		this.newHtml = `
+			<div aria-live="assertive">
+				${ hasSuggestions ? `<div
+					class="o-normalise-visually-hidden n-topic-search__suggestions_explanation">
+					Search results have been displayed. To jump to the list of suggestions press the down arrow key.
+				</div>` : '' }
+				<div
+					class="n-topic-search n-topic-search__suggestions"
+					${ hasSuggestions ? '' : 'hidden'}
+					data-trackable="typeahead"
+				>
+					<div class="o-normalise-visually-hidden">Suggestions include</div>
+					${ suggestions.map(this.renderSuggestionGroup).join('') }
+				</div>
 			</div>
-			${ hasSuggestions ? `<div
-				aria-live="assertive"
-				class="o-normalise-visually-hidden">
-				Search results have been displayed. To jump to the list of suggestions press the down arrow key.
-			</div>` : '' }
 			`;
 	}
 
