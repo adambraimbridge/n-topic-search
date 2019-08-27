@@ -31,10 +31,19 @@ export default class BaseRenderer {
 
 	render () {
 		if (this.container.innerHTML.trim()) {
+			// empty the suggestions div first to prevent
+			// screen readers reading the old suggestions
+			const empty = document.createElement('div');
+			const suggestions = this.container.querySelector('.n-topic-search__suggestions');
+			if (suggestions) {
+				morphdom(suggestions, empty);
+			}
+
 			const frag = document.createDocumentFragment();
 			frag.appendChild(document.createElement('div'));
 			frag.firstChild.insertAdjacentHTML('beforeend', this.newHtml);
-			morphdom(this.container.firstChild, frag.firstChild.firstChild);
+
+			morphdom(this.container.firstChild, frag.firstChild);
 		} else {
 			this.container.innerHTML = this.newHtml;
 		}

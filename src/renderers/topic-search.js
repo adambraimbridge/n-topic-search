@@ -32,13 +32,13 @@ class TopicSearch extends BaseRenderer {
 			${ hasSuggestions ? '' : 'hidden'}
 			data-trackable="typeahead">
 			${ suggestions.map(suggestion =>
-					`<li class="n-topic-search__item">
+		`<li class="n-topic-search__item">
 						<button type="button" class="n-topic-search__target search-filtering__suggestion"
 							data-trackable="concept-suggestion"
 							data-suggestion-id="${suggestion.id}"
 							data-suggestion-name="${suggestion.prefLabel}">${suggestion.html}</button>
 					</li>`
-				).join('') }
+	).join('') }
 		</ul>`;
 	}
 }
