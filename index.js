@@ -30,7 +30,8 @@ class TopicSearch {
 	constructor (containerEl, {
 		listComponent = suggestionList,
 		preSuggest = a => a,
-		hostName = defaultHostName
+		hostName = defaultHostName,
+		errorCallback = null,
 	} = {}) {
 		this.container = containerEl;
 		this.listComponent = listComponent;
@@ -41,6 +42,7 @@ class TopicSearch {
 		this.itemTag = this.container.getAttribute('data-n-topic-search-item-tag') || 'a';
 		this.includeViewAllLink = this.container.hasAttribute('data-n-topic-search-view-all');
 		this.minLength = 2;
+		this.errorCallback = errorCallback;
 		this.init();
 	}
 
@@ -191,6 +193,7 @@ class TopicSearch {
 				})
 				.then(suggestions => this.suggest(this.preSuggest(suggestions)))
 				.catch((err) => {
+					this.errorCallback && this.errorCallback(err);
 					setTimeout(() => {
 						throw err;
 					});
