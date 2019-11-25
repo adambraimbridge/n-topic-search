@@ -89,7 +89,7 @@
 		mark {
 			color: inherit;
 			background: none;
-			@include oTypographySans($weight: 'bold');
+			@include oTypographySans($weight: 'semibold');
 		}
 
 		abbr {
