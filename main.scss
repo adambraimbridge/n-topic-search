@@ -1,3 +1,4 @@
+@import 'n-ui-foundations/mixins';
 
 @mixin nTopicSearch {
 	[data-n-topic-search] {
@@ -15,7 +16,7 @@
 		margin: -2px 0 0;
 		border: 1px solid rgba(0, 0, 0, 0.3);
 		overflow: hidden;
-		background: getColor('white');
+		background: oColorsByName('white');
 		text-align: left;
 		display: flex;
 		flex-direction: column;
@@ -45,7 +46,7 @@
 		padding: $spacing-unit 0;
 
 		&:before {
-			border-top: 8px solid getColor('black');
+			border-top: 8px solid oColorsByName('black');
 			content: '';
 			left: 0;
 			top: 0;
@@ -69,7 +70,7 @@
 	.n-topic-search__target {
 		@include oTypographySans(0);
 		cursor: pointer;
-		color: getColor('black-80');
+		color: oColorsByName('black-80');
 		border-bottom: 0;
 		box-sizing: border-box;
 		display: block;
@@ -88,7 +89,7 @@
 		mark {
 			color: inherit;
 			background: none;
-			@include oTypographyBold('sans');
+			@include oTypographySans($weight: 'semibold');
 		}
 
 		abbr {
@@ -100,7 +101,7 @@
 		&:before {
 			content: '';
 			display: block;
-			border-bottom: 1px solid getColor('black-40');
+			border-bottom: 1px solid oColorsByName('black-40');
 			position: absolute;
 			bottom: 0;
 			left: $spacing-unit;
@@ -110,8 +111,8 @@
 
 		&:hover,
 		&:focus {
-			background: getColor('teal-40');
-			color: getColor('white');
+			background: oColorsByName('teal-40');
+			color: oColorsByName('white');
 		}
 
 		&:hover:before,
@@ -133,18 +134,18 @@
 	.n-topic-search__target--tail {
 
 		&:after {
-			@include oIconsGetIcon(arrow-right, getColor('black-80'), 14);
+			@include oIconsContent('arrow-right', oColorsByName('black-80'), 14);
 			margin: 0 0 -2px 2px;
 			content: '';
 		}
 
 		&:hover:after {
-			@include oIconsGetIcon(arrow-right, getColor('white'), 14);
+			@include oIconsContent('arrow-right', oColorsByName('white'), 14);
 		}
 	}
 
 	.n-topic-search__target--news {
-		color: getColor('claret');
+		color: oColorsByName('claret');
 	}
 
 	// for nice alignment of equity name and index
