@@ -6,9 +6,9 @@ let defaultHostName = 'www.ft.com';
 
 // Check if developing locally, if we are then proxy the search api through
 // the demo application.
-const hostname = window.location.hostname
+const hostname = window.location.hostname;
 if (hostname === 'localhost' || hostname === 'local.ft.com') {
-	defaultHostName = window.location.host
+	defaultHostName = window.location.host;
 }
 
 function getNonMatcher (container) {
