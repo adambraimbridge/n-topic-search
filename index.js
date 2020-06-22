@@ -2,7 +2,14 @@ import Delegate from 'ftdomdelegate';
 import { debounce } from 'n-ui-foundations';
 import suggestionList from './src/renderers/search-suggestions';
 
-const defaultHostName = /local(?:host)?\.ft\.com/.test(window.location.host) ? window.location.host : 'www.ft.com';
+let defaultHostName = 'www.ft.com';
+
+// Check if developing locally, if we are then proxy the search api through
+// the demo application.
+const hostname = window.location.hostname;
+if (hostname === 'localhost' || hostname === 'local.ft.com') {
+	defaultHostName = window.location.host;
+}
 
 function getNonMatcher (container) {
 	if (typeof container === 'string') {

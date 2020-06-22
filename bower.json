@@ -7,7 +7,7 @@
   "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "morphdom": "^2.5.10",
-    "n-ui-foundations": "^4.0.0-beta.2"
+    "n-ui-foundations": "^6.0.0"
   },
   "description": "",
   "main": ""
